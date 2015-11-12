@@ -9,14 +9,14 @@
 import Foundation
 import UIKit
 
-extension UINavigationItem {
+public extension UINavigationItem {
     
     /**
      添加一组与屏幕右边对其的rightBarButtonItems
      
      - parameter items: rightBarButtonItem数组
      */
-    func rightBarButtonItemsFixedSpace(items:[UIBarButtonItem]?) {
+    public func rightBarButtonItemsFixedSpace(items:[UIBarButtonItem]?) {
         guard items != nil else {
             return;
         }
@@ -34,7 +34,7 @@ extension UINavigationItem {
      
      - parameter item: UIBarButtonItem
      */
-    func rightBarButtonItemFixedSpace(item:UIBarButtonItem) {
+    public func rightBarButtonItemFixedSpace(item:UIBarButtonItem) {
         self.rightBarButtonItemsFixedSpace([item])
     }
 }

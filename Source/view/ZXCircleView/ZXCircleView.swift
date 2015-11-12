@@ -10,9 +10,9 @@ import UIKit
 import RxSwift
 import Neon
 
-typealias ZXCircleViewCellRef = AutoreleasingUnsafeMutablePointer<ZXCircleViewCell>
+public typealias ZXCircleViewCellRef = AutoreleasingUnsafeMutablePointer<ZXCircleViewCell>
 
-@objc protocol ZXCircleViewDelegate : NSObjectProtocol {
+@objc public protocol ZXCircleViewDelegate : NSObjectProtocol {
     
     //CircleView中循环视图的总数
     func numberOfItemsInCircleView(circleView:ZXCircleView) -> Int
@@ -25,7 +25,7 @@ typealias ZXCircleViewCellRef = AutoreleasingUnsafeMutablePointer<ZXCircleViewCe
 
 let TimeInterval = 4.5          //全局的时间间隔
 
-class ZXCircleView: UIView,UIScrollViewDelegate {
+public class ZXCircleView: UIView,UIScrollViewDelegate {
 
     weak var circleDelegate:ZXCircleViewDelegate!
     
@@ -42,7 +42,7 @@ class ZXCircleView: UIView,UIScrollViewDelegate {
     //RxSwift资源回收包
     private let disposeBag = DisposeBag()
     
-    init(frame: CGRect,delegate:ZXCircleViewDelegate) {
+    public init(frame: CGRect,delegate:ZXCircleViewDelegate) {
         super.init(frame: frame)
         self.circleDelegate = delegate
         self.scrollView = UIScrollView()
@@ -60,18 +60,18 @@ class ZXCircleView: UIView,UIScrollViewDelegate {
         self.addTapGestureRecognizer()
     }
     
-    override func layoutSubviews() {
+    override public func layoutSubviews() {
         super.layoutSubviews()
         
         self.scrollView.fillSuperview()
         self.control.anchorToEdge(.Bottom, padding: 0, width: self.frame.size.width, height: 20)
     }
 
-    required init?(coder aDecoder: NSCoder) {
+    required public init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
 
-    func reloadData() {
+    public func reloadData() {
         let count = self.circleDelegate.numberOfItemsInCircleView(self)
         if count == 0 {
             return
@@ -109,18 +109,18 @@ class ZXCircleView: UIView,UIScrollViewDelegate {
         self.scrollView.setContentOffset(CGPointMake(offset.x + self.frame.size.width, 0), animated: true)
     }
     
-    func scrollViewWillBeginDragging(scrollView: UIScrollView) {
+    public func scrollViewWillBeginDragging(scrollView: UIScrollView) {
         self.timer?.invalidate()
         self.timer = nil
     }
     
-    func scrollViewDidEndDecelerating(scrollView: UIScrollView) {
+    public func scrollViewDidEndDecelerating(scrollView: UIScrollView) {
         //重置计时器
         if self.timer == nil {
             self.timer = NSTimer.scheduledTimerWithTimeInterval(TimeInterval, target: self, selector: "timerAction", userInfo: nil, repeats: true)
         }
     }
-    func scrollViewDidScroll(scrollView: UIScrollView) {
+    public func scrollViewDidScroll(scrollView: UIScrollView) {
         guard scrollView.bounds.size.width > 0 else {
             return
         }
@@ -180,8 +180,8 @@ class ZXCircleView: UIView,UIScrollViewDelegate {
     }
 }
 
-class ZXCircleViewCell: UIView,NSMutableCopying {
-    var index: Int?
+public class ZXCircleViewCell: UIView,NSMutableCopying {
+    public var index: Int?
     
     private var imageView: UIImageView!
     
@@ -189,7 +189,7 @@ class ZXCircleViewCell: UIView,NSMutableCopying {
     
     private var titleLabel:UILabel!
     
-    override init(frame: CGRect) {
+    override public init(frame: CGRect) {
         super.init(frame: frame)
         
         let size = CGSizeMake(frame.size.width, 40)
@@ -211,11 +211,11 @@ class ZXCircleViewCell: UIView,NSMutableCopying {
         self.addSubview(self.titleLabel)
     }
     
-    required init?(coder aDecoder: NSCoder) {
+    required public init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
     }
     
-    override func layoutSubviews() {
+    override public func layoutSubviews() {
         super.layoutSubviews()
         
         self.imageView.fillSuperview()
@@ -230,7 +230,7 @@ class ZXCircleViewCell: UIView,NSMutableCopying {
 //        titleLabel.text = model.title
 //    }
     
-    func mutableCopyWithZone(zone: NSZone) -> AnyObject {
+    public func mutableCopyWithZone(zone: NSZone) -> AnyObject {
         let cell =  ZXCircleViewCell(frame: self.frame)
         cell.imageView.image = self.imageView.image
         cell.titleLabel.text = self.titleLabel.text

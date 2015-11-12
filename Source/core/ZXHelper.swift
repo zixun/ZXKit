@@ -9,24 +9,24 @@
 import Foundation
 import UIKit
 
-func ZXScreenWidth() -> CGFloat {
+public func ZXScreenWidth() -> CGFloat {
     return UIScreen.mainScreen().bounds.size.width
 }
 
-func ZXScreenHight() -> CGFloat {
+public func ZXScreenHight() -> CGFloat {
     return UIScreen.mainScreen().bounds.size.height
 }
 
 //Mark: print相关
-func println(items: Any...){    
+public func println(items: Any...){
     print(items, terminator: "\n")
 }
 
-func alert(message:String) {
+public func alert(message:String) {
     UIAlertView(title: "提示", message: message, delegate: nil, cancelButtonTitle: "取消").show()
 }
 
 //option链相关
-func judge(string:String?) ->String {
+public func judge(string:String?) ->String {
     return string != nil ? string! : ""
 }

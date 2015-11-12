@@ -8,10 +8,10 @@
 
 import UIKit
 
-class ZXNavigationController: UINavigationController {
+public class ZXNavigationController: UINavigationController {
 
     
-    override func viewDidLoad() {
+    override public func viewDidLoad() {
         super.viewDidLoad()
         self.view.backgroundColor = UIColor.blackColor()
         
@@ -39,7 +39,7 @@ class ZXNavigationController: UINavigationController {
         imageView.frame = rect
     }
     
-    override func pushViewController(viewController: UIViewController, animated: Bool) {
+    override public func pushViewController(viewController: UIViewController, animated: Bool) {
         
         if self.viewControllers.count > 0 {
             viewController.hidesBottomBarWhenPushed = true
@@ -51,7 +51,7 @@ class ZXNavigationController: UINavigationController {
 // MARK: UIGestureRecognizerDelegate
 extension ZXNavigationController: UIGestureRecognizerDelegate {
     
-    func gestureRecognizerShouldBegin(gestureRecognizer: UIGestureRecognizer) -> Bool {
+    public func gestureRecognizerShouldBegin(gestureRecognizer: UIGestureRecognizer) -> Bool {
         let translation: CGPoint = (gestureRecognizer as! UIPanGestureRecognizer).translationInView(self.view.superview)
         if (translation.x < 0) {
             return false;//往右滑返回，往左滑不做操作

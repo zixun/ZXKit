@@ -10,7 +10,7 @@ import Foundation
 
 // MARK: - NSString 删除子字符串类别
 
-extension NSString {
+public extension NSString {
     
     /**
     返回一个删除掉所有出现target字符串的地方的新的字符串
@@ -19,7 +19,7 @@ extension NSString {
     
     - returns: 新的字符串
     */
-    func stringByDeletingOccurrencesOfString(target: String) -> String {
+    public func stringByDeletingOccurrencesOfString(target: String) -> String {
        return self.stringByReplacingOccurrencesOfString(target, withString: "")
     }
     
@@ -33,7 +33,7 @@ extension NSString {
     
     - returns: 新的字符串
     */
-    func stringByDeletingScopeString(begin:String, end:String) -> String {
+    public func stringByDeletingScopeString(begin:String, end:String) -> String {
         let rangeBegin = self.rangeOfString(begin)
         let rangeEnd = self.rangeOfString(end)
         
@@ -51,7 +51,7 @@ extension NSString {
     
     - returns: 新的字符串
     */
-    func stringByInsertString(str:String, beforeOccurrencesOfString target:String) -> String {
+    public func stringByInsertString(str:String, beforeOccurrencesOfString target:String) -> String {
        return self.stringByReplacingOccurrencesOfString(target, withString: str + target)
     }
 
@@ -68,7 +68,7 @@ extension NSString {
     
     - returns: 新的字符串
     */
-    func stringByDeletingOccurrencesOfString(target: String,
+    public func stringByDeletingOccurrencesOfString(target: String,
         options: NSStringCompareOptions,
         range: NSRange) -> String {
             
@@ -86,7 +86,7 @@ extension NSString {
     
     - returns: 新的字符串
     */
-    func stringByDeletingCharactersInRange(range: NSRange) -> String {
+    public func stringByDeletingCharactersInRange(range: NSRange) -> String {
         return self.stringByReplacingCharactersInRange(range, withString: "")
     }
     

@@ -10,9 +10,9 @@ import Foundation
 import UIKit
 
 // MARK: - circle image
-extension UIImage {
+public extension UIImage {
     
-    func circleImage() -> UIImage{
+    public func circleImage() -> UIImage{
         UIGraphicsBeginImageContext(self.size)
         let context = UIGraphicsGetCurrentContext()
         //圆的边框宽度为2，颜色为红色

@@ -9,9 +9,9 @@
 import Foundation
 import UIKit
 
-extension UIView {
+public extension UIView {
  
-    func isDisplayedInScreen() -> Bool {
+    public func isDisplayedInScreen() -> Bool {
         //不在window中
         if self.window == nil {
             return false

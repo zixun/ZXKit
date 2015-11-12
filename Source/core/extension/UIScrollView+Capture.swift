@@ -9,9 +9,9 @@
 import Foundation
 import UIKit
 
-extension UIScrollView {
+public extension UIScrollView {
     
-    func capture()->UIImage{
+    public func capture()->UIImage{
         var image = UIImage();
         
         UIGraphicsBeginImageContextWithOptions(self.contentSize, false, UIScreen.mainScreen().scale)

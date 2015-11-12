@@ -21,7 +21,7 @@ import Foundation
 *
 * @returns The bundle path concatenated with the given relative path.
 */
-func ZXPathForBundleResource(bundle: NSBundle?, relativePath: String) -> String {
+public func ZXPathForBundleResource(bundle: NSBundle?, relativePath: String) -> String {
     let resourcePath = (bundle == nil ? NSBundle.mainBundle() : bundle)!.resourcePath! as NSString
     return resourcePath.stringByAppendingPathComponent(relativePath)
 }
@@ -31,7 +31,7 @@ func ZXPathForBundleResource(bundle: NSBundle?, relativePath: String) -> String 
 *
 * @returns The documents path concatenated with the given relative path.
 */
-func ZXPathForDocumentsResource(relativePath: String) -> String {
+public func ZXPathForDocumentsResource(relativePath: String) -> String {
     return (documentsPath as NSString).stringByAppendingPathComponent(relativePath)
 }
 
@@ -40,7 +40,7 @@ func ZXPathForDocumentsResource(relativePath: String) -> String {
 *
 * @returns The Library path concatenated with the given relative path.
 */
-func ZXPathForLibraryResource(relativePath: String) -> String {
+public func ZXPathForLibraryResource(relativePath: String) -> String {
      return (libraryPath as NSString).stringByAppendingPathComponent(relativePath)
 }
 
@@ -49,7 +49,7 @@ func ZXPathForLibraryResource(relativePath: String) -> String {
 *
 * @returns The caches path concatenated with the given relative path.
 */
-func ZXPathForCachesResource(relativePath: String) -> String {
+public func ZXPathForCachesResource(relativePath: String) -> String {
     return (cachesPath as NSString).stringByAppendingPathComponent(relativePath)
 }
 
@@ -59,7 +59,7 @@ func ZXPathForCachesResource(relativePath: String) -> String {
 *
 * @returns The caches path concatenated with the given relative path.
 */
-func ZXPathForApplicationSupportResource(relativePath: String) -> String {
+public func ZXPathForApplicationSupportResource(relativePath: String) -> String {
     return (applicationSupportPath as NSString).stringByAppendingPathComponent(relativePath)
 }
 

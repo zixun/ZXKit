@@ -9,11 +9,11 @@
 import Foundation
 import UIKit
 
-func ZXColor(rgb:Int) -> UIColor {
+public func ZXColor(rgb:Int) -> UIColor {
     return ZXColor(rgb, alpha: 1.0)
 }
 
-func ZXColor(rgb:Int,alpha:CGFloat) ->UIColor {
+public func ZXColor(rgb:Int,alpha:CGFloat) ->UIColor {
     let red: CGFloat = CGFloat((rgb & 0xFF0000) >> 16) / 255.0
     let green: CGFloat = CGFloat((rgb & 0x00FF00) >> 8) / 255.0
     let blue: CGFloat = CGFloat((rgb & 0x0000FF)) / 255.0
@@ -21,7 +21,7 @@ func ZXColor(rgb:Int,alpha:CGFloat) ->UIColor {
 }
 
 
-func ZXColor(startColor:UIColor,endColor:UIColor,fraction:CGFloat) -> UIColor {
+public func ZXColor(startColor:UIColor,endColor:UIColor,fraction:CGFloat) -> UIColor {
     var startR: CGFloat = 0, startG: CGFloat = 0, startB: CGFloat = 0, startA: CGFloat = 0
     startColor.getRed(&startR, green: &startG, blue: &startB, alpha: &startA)
     

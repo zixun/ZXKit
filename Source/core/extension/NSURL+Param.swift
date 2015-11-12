@@ -9,14 +9,14 @@
 import Foundation
 
 // MARK: - NSURL参数操作
-extension NSURL {
+public extension NSURL {
 
     /**
     获取URL中的参数字典
     
     - returns: 参数字典
     */
-    func paramDictionary() -> [String : String]? {
+    public func paramDictionary() -> [String : String]? {
         guard let paramString: String? = self.query else {
             return nil
         }
@@ -38,7 +38,7 @@ extension NSURL {
      
      - returns: key对应的值
      */
-    func paramValue(key:String) -> String? {
+    public func paramValue(key:String) -> String? {
         guard let dic = self.paramDictionary() else {
             return nil
         }
@@ -54,7 +54,7 @@ extension NSURL {
     
     - returns: 是否存在
     */
-    func isParamExist(key:String) -> Bool {
+    public func isParamExist(key:String) -> Bool {
         guard let dic = self.paramDictionary() else {
             return false
         }
@@ -74,7 +74,7 @@ extension NSURL {
      
      - returns: 新的NSURL
      */
-    func newURLByAppendingParams(params:[String : String]) -> NSURL {
+    public func newURLByAppendingParams(params:[String : String]) -> NSURL {
         var urlString = self.absoluteString
         var isFirst = true
         
@@ -104,7 +104,7 @@ extension NSURL {
      
      - returns: 新的NSURL
      */
-    func newURLByReplaceParams(params:[String : String]) -> NSURL {
+    public func newURLByReplaceParams(params:[String : String]) -> NSURL {
         guard var paramDic = self.paramDictionary() else {
             return self
         }

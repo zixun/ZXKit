@@ -10,7 +10,7 @@ import Foundation
 import MBProgressHUD
 
 
-enum ZXHighlightStyle : String {
+public enum ZXHighlightStyle : String {
     case Agate = "agate"
     case Androidstudio = "androidstudio"
     case Arta = "arta"
@@ -84,9 +84,9 @@ enum ZXHighlightStyle : String {
 
 
 /// 代码高亮WebView
-class ZXHighlightWebView: UIWebView {
+public class ZXHighlightWebView: UIWebView {
     
-    let baseURL = NSURL.fileURLWithPath(NSBundle.mainBundle().bundlePath)
+    private let baseURL = NSURL.fileURLWithPath(NSBundle.mainBundle().bundlePath)
     
     var hud:MBProgressHUD!
     
@@ -100,7 +100,7 @@ class ZXHighlightWebView: UIWebView {
     }
     
     
-    required init?(coder aDecoder: NSCoder) {
+    required public init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
     
@@ -109,7 +109,7 @@ class ZXHighlightWebView: UIWebView {
     }
     
     //MARK: override
-    override func loadHTMLString(string: String, baseURL: NSURL?) {
+    override public func loadHTMLString(string: String, baseURL: NSURL?) {
         var html = string
         html = html.stringByReplacingOccurrencesOfString("<p><code>", withString: "<pre><code>")
         html = html.stringByReplacingOccurrencesOfString("<pre><code>\n", withString: "<pre><code>")
@@ -139,12 +139,12 @@ class ZXHighlightWebView: UIWebView {
 
 //MARK: - UIWebViewDelegate
 extension ZXHighlightWebView:UIWebViewDelegate {
-    func webViewDidFinishLoad(webView: UIWebView) {
+    public func webViewDidFinishLoad(webView: UIWebView) {
         self.hud.hide(true)
         MBProgressHUD.hideHUDForView(self, animated: true)
     }
     
-    func webView(webView: UIWebView, didFailLoadWithError error: NSError?) {
+    public func webView(webView: UIWebView, didFailLoadWithError error: NSError?) {
         self.hud.hide(true)
         MBProgressHUD.hideHUDForView(self, animated: true)
     }
