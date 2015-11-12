@@ -88,9 +88,9 @@ public class ZXHighlightWebView: UIWebView {
     
     private let baseURL = NSURL.fileURLWithPath(NSBundle.mainBundle().bundlePath)
     
-    var hud:MBProgressHUD!
+    public var hud:MBProgressHUD!
     
-    override init(frame: CGRect) {
+    override public init(frame: CGRect) {
         
         super.init(frame: frame)
         self.delegate = self
@@ -104,7 +104,7 @@ public class ZXHighlightWebView: UIWebView {
         fatalError("init(coder:) has not been implemented")
     }
     
-    func loadHTMLString(string: String) {
+    public func loadHTMLString(string: String) {
         self.loadHTMLString(string, baseURL: self.baseURL)
     }
     

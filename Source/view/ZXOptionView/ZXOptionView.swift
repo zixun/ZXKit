@@ -22,7 +22,7 @@ public typealias ZXOptionViewCellPoint = AutoreleasingUnsafeMutablePointer<ZXOpt
     optional func optionView(optionView:ZXOptionView, didSelectOptionAtIndex index:Int)
 }
 
-enum ZXOptionViewType:Int {
+public enum ZXOptionViewType:Int {
     case Tap    = 0
     case Slider = 1
 }
@@ -30,18 +30,18 @@ enum ZXOptionViewType:Int {
 // MARK: - ZXOptionView
 public class ZXOptionView: UICollectionView{
 
-    weak var optionDelegate: ZXOptionViewDelegate?
+    public weak var optionDelegate: ZXOptionViewDelegate?
     
-    var floatIndex: Float = 0.0 {
+    public var floatIndex: Float = 0.0 {
         didSet{
             self.type = .Slider
             self.handleFloatIndex(floatIndex)
         }
     }
     
-    private var selectIndex: Int = 0
+    public var type:ZXOptionViewType = .Slider
     
-    var type:ZXOptionViewType = .Slider
+    private var selectIndex: Int = 0
     
     public init(frame: CGRect) {
         let layout: UICollectionViewFlowLayout = UICollectionViewFlowLayout()

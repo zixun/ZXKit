@@ -66,11 +66,11 @@ extension ZXNavigationController: UIGestureRecognizerDelegate {
 
 extension UIViewController {
     
-    func presentViewController(viewControllerToPresent: UIViewController) {
+    public func presentViewController(viewControllerToPresent: UIViewController) {
         self.presentViewController(viewControllerToPresent, animated: true, completion: nil)
     }
     
-    func presentViewController(viewControllerToPresent: UIViewController,withNavigation:Bool, animated flag: Bool, completion: (() -> Void)?) {
+    public func presentViewController(viewControllerToPresent: UIViewController,withNavigation:Bool, animated flag: Bool, completion: (() -> Void)?) {
         if withNavigation == false {
             self.presentViewController(viewControllerToPresent, animated: flag, completion: completion)
         }else {

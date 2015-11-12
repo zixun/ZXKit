@@ -25,7 +25,7 @@ public protocol ZXGuideViewControllerDelegate : NSObjectProtocol {
 
 public class ZXGuideViewController: UIViewController {
 
-    weak var delegate: ZXGuideViewControllerDelegate?
+    public weak var delegate: ZXGuideViewControllerDelegate?
     
     private var scrollView : UIScrollView!
     private var pageControl : UIPageControl!

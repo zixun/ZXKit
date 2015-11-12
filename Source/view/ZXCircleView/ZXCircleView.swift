@@ -183,11 +183,11 @@ public class ZXCircleView: UIView,UIScrollViewDelegate {
 public class ZXCircleViewCell: UIView,NSMutableCopying {
     public var index: Int?
     
-    private var imageView: UIImageView!
+    public var imageView: UIImageView!
     
     private var labelMaskView: UIImageView!
     
-    private var titleLabel:UILabel!
+    public var titleLabel:UILabel!
     
     override public init(frame: CGRect) {
         super.init(frame: frame)

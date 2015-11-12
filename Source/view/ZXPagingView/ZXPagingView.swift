@@ -104,7 +104,7 @@ public class ZXPagingView: UICollectionView, UICollectionViewDelegateFlowLayout,
     }
     
     
-    func dequeueReusablePageWithReuseIdentifier(identifier: String, forIndex index: Int) -> ZXPage {
+    public func dequeueReusablePageWithReuseIdentifier(identifier: String, forIndex index: Int) -> ZXPage {
         let page = self.dequeueReusableCellWithReuseIdentifier(identifier, forIndexPath: NSIndexPath(forRow: index, inSection: 0) ) as! ZXPage
         page.index = index
         
