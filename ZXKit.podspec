@@ -3,7 +3,7 @@ Pod::Spec.new do |s|
   s.version          = "0.0.1"
   s.summary          = "从CocoaChinaPlus App中抽离出来的Swift基础组件库."
   s.description      = <<-DESC
-  从CocoaChinaPlus App中抽离出来的基础组件库. 
+  从CocoaChinaPlus App中抽离出来的基础组件库. 纯Swift实现
   DESC
   s.homepage         = "https://github.com/zixun/ZXKit"
   s.license          = 'MIT'
@@ -13,9 +13,16 @@ Pod::Spec.new do |s|
   s.platform     = :ios, '8.0'
   s.requires_arc = true
 
-  s.source_files = 'ZXKit/Source/*'
-  # s.resources = 'ZXKit/Resources'
-
+  s.source_files = 'Source/**/*.swift'
+  s.resource_bundles = {
+    'ZXKit' => ['Resources/*.png']
+  }
   s.frameworks = 'Foundation','UIKit'
 
-  end
+  s.dependency 'Neon', '~> 0.0.3'
+  s.dependency 'RxSwift', '~> 2.0.0-beta.2'
+  s.dependency 'RxCocoa', '~> 2.0.0-beta.2'
+  s.dependency 'RxBlocking', '~> 2.0.0-beta.2'
+  s.dependency 'MBProgressHUD', '~> 0.9.1'
+
+end
