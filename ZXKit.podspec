@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name             = "ZXKit"
-  s.version          = "0.0.2"
+  s.version          = "0.0.3"
   s.summary          = "从CocoaChinaPlus App中抽离出来的Swift基础组件库."
   s.description      = <<-DESC
   从CocoaChinaPlus App中抽离出来的基础组件库. 纯Swift实现
