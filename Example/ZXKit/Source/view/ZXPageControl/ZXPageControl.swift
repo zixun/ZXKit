@@ -8,7 +8,7 @@
 
 import UIKit
 
-enum ZXPageControlType:Int {
+public enum ZXPageControlType:Int {
     case OnFullOffFull   = 0
     case OnFullOffEmpty  = 1
     case OnEmptyOffFull  = 2
@@ -17,12 +17,12 @@ enum ZXPageControlType:Int {
 
 
 
-class ZXPageControl: UIControl {
+public class ZXPageControl: UIControl {
 
-    var pageCount:Int = 0
-    var space:CGFloat = 12
+    public var pageCount:Int = 0
+    public var space:CGFloat = 12
     
-    var currentPage:Int = 0 {
+    public var currentPage:Int = 0 {
         didSet {
             self.setNeedsDisplay()
         }
@@ -38,7 +38,7 @@ class ZXPageControl: UIControl {
     
     private var imageViews = [UIImageView]()
     
-    init(type:ZXPageControlType,
+    public init(type:ZXPageControlType,
         diameter:CGFloat = 8.0,
         onColor:UIColor = UIColor(white: 1.0, alpha: 0.5),
         offColor:UIColor = UIColor(white: 1.0, alpha: 0.2)
@@ -51,11 +51,11 @@ class ZXPageControl: UIControl {
         self.backgroundColor = UIColor.clearColor()
     }
 
-    required init?(coder aDecoder: NSCoder) {
+    required public init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
     }
     
-    override func drawRect(rect: CGRect) {
+    override public func drawRect(rect: CGRect) {
         super.drawRect(rect)
         let context = UIGraphicsGetCurrentContext()
         CGContextSaveGState(context)

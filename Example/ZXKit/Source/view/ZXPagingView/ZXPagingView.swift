@@ -10,12 +10,12 @@ import Foundation
 import UIKit
 
 /// 放内容的Page
-class ZXPage: UICollectionViewCell {
+public class ZXPage: UICollectionViewCell {
     
     var index:Int?
 }
 
-protocol ZXPagingViewDelegate: NSObjectProtocol {
+public protocol ZXPagingViewDelegate: NSObjectProtocol {
     
     func numberOfItemsInPagingView(pagingView:ZXPagingView) -> Int
     
@@ -29,18 +29,18 @@ protocol ZXPagingViewDelegate: NSObjectProtocol {
     
 }
 
-class ZXPagingView: UICollectionView, UICollectionViewDelegateFlowLayout, UIScrollViewDelegate, UICollectionViewDataSource {
+public class ZXPagingView: UICollectionView, UICollectionViewDelegateFlowLayout, UIScrollViewDelegate, UICollectionViewDataSource {
     
-    weak var pagingDelegate:ZXPagingViewDelegate?
+    public weak var pagingDelegate:ZXPagingViewDelegate?
     
-    var currentIndex:Int = 0 {
+    public var currentIndex:Int = 0 {
         
         didSet{
             self.moveToIndex(currentIndex)
         }
     }
     
-    override var frame: CGRect {
+    override public var frame: CGRect {
         didSet {
             let layout = self.collectionViewLayout as! UICollectionViewFlowLayout
             if !CGSizeEqualToSize(layout.itemSize, frame.size) {
@@ -52,7 +52,7 @@ class ZXPagingView: UICollectionView, UICollectionViewDelegateFlowLayout, UIScro
     }
     
     
-    init(frame: CGRect) {
+    public init(frame: CGRect) {
         let layout: UICollectionViewFlowLayout = UICollectionViewFlowLayout()
         layout.scrollDirection = UICollectionViewScrollDirection.Horizontal
         layout.minimumLineSpacing = 0
@@ -70,22 +70,22 @@ class ZXPagingView: UICollectionView, UICollectionViewDelegateFlowLayout, UIScro
         
     }
     
-    required init?(coder aDecoder: NSCoder) {
+    required public init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
     }
     
     
-    func reloadItemsAtIndex(index: Int) {
+    public func reloadItemsAtIndex(index: Int) {
         let indexPath = NSIndexPath(forRow: index, inSection: 0)
         self.reloadItemsAtIndexPaths([indexPath])
     }
 
-    func moveToIndex(index:Int) {
+    public func moveToIndex(index:Int) {
         let offset = CGPointMake(self.frame.size.width * CGFloat(index), 0)
         self.setContentOffset(offset, animated: true)
     }
     
-    func pageAtLocation(location:CGPoint) -> ZXPage?{
+    public func pageAtLocation(location:CGPoint) -> ZXPage?{
         guard CGRectContainsPoint(self.bounds, location) else {
             return nil
         }
@@ -112,7 +112,7 @@ class ZXPagingView: UICollectionView, UICollectionViewDelegateFlowLayout, UIScro
     }
     
     // MARK: pagingView scroll delegate
-    func scrollViewDidScroll(scrollView: UIScrollView) {
+    public func scrollViewDidScroll(scrollView: UIScrollView) {
         guard self.collectionView(self, numberOfItemsInSection: 0) != 0 else {
             return
         }
@@ -121,11 +121,11 @@ class ZXPagingView: UICollectionView, UICollectionViewDelegateFlowLayout, UIScro
     }
     
     // MARK: pagingView dataSource
-    func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+    public func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return self.pagingDelegate != nil ? self.pagingDelegate!.numberOfItemsInPagingView(self) : 0
     }
     
-    func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
+    public func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
         
         guard self.pagingDelegate != nil else {
             return ZXPage()
@@ -135,12 +135,12 @@ class ZXPagingView: UICollectionView, UICollectionViewDelegateFlowLayout, UIScro
         return cell
     }
     
-    func collectionView(collectionView: UICollectionView, willDisplayCell cell: UICollectionViewCell, forItemAtIndexPath indexPath: NSIndexPath) {
+    public func collectionView(collectionView: UICollectionView, willDisplayCell cell: UICollectionViewCell, forItemAtIndexPath indexPath: NSIndexPath) {
         self.pagingDelegate?.pagingView(self, willMoveToPageAtIndex: indexPath.row)
     }
     
     // MARK: pagingView layout delegate
-    func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAtIndexPath indexPath: NSIndexPath) -> CGSize {
+    public func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAtIndexPath indexPath: NSIndexPath) -> CGSize {
         return collectionView.frame.size
     }
     

@@ -9,22 +9,22 @@
 import UIKit
 import RxSwift
 
-class ZXCuteView: UIView {
+public class ZXCuteView: UIView {
     
     // 父视图
-    var containerView:UIView?
+    public var containerView:UIView?
     
     // 气泡上显示数字的label
-    var bubbleImage:UIImageView?
+    public var bubbleImage:UIImageView?
     
     //气泡的直径
-    var bubbleWidth:CGFloat = 0.0
+    public var bubbleWidth:CGFloat = 0.0
     
     //气泡粘性系数，越大可以拉得越长
-    var viscosity:CGFloat = 20.0
+    public var viscosity:CGFloat = 20.0
     
     //气泡颜色
-    var bubbleColor:UIColor = ZXColor(0x00B9FF) {
+    public var bubbleColor:UIColor = ZXColor(0x00B9FF) {
         
         didSet {
             self.frontView?.backgroundColor = self.bubbleColor
@@ -32,12 +32,12 @@ class ZXCuteView: UIView {
         }
     }
     
-    var disposeBag = DisposeBag()
-    
     //需要隐藏气泡时候可以使用这个属性：self.frontView.hidden = YES;
-    var frontView:UIView?//用户拖走的View
+    public var frontView:UIView?//用户拖走的View
     
-    var backView:UIView?//原地保留显示的View
+    public var backView:UIView?//原地保留显示的View
+    
+    private var disposeBag = DisposeBag()
     
     private var initialPoint:CGPoint!
     private var shapeLayer:CAShapeLayer!
@@ -72,7 +72,7 @@ class ZXCuteView: UIView {
     
     var tapCallBack:(()->Void)?
     
-    convenience init(point:CGPoint,superView:UIView,bubbleWidth:CGFloat) {
+    public convenience init(point:CGPoint,superView:UIView,bubbleWidth:CGFloat) {
         self.init(frame:CGRectMake(point.x, point.y, bubbleWidth,bubbleWidth))
         self.bubbleWidth = frame.size.width
         self.initialPoint = point

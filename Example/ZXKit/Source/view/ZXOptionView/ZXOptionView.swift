@@ -8,10 +8,10 @@
 
 import UIKit
 
-typealias ZXOptionViewCellPoint = AutoreleasingUnsafeMutablePointer<ZXOptionViewCell>
+public typealias ZXOptionViewCellPoint = AutoreleasingUnsafeMutablePointer<ZXOptionViewCell>
 
 // MARK: - ZXOptionViewDelegate
-@objc protocol ZXOptionViewDelegate :NSObjectProtocol{
+@objc public protocol ZXOptionViewDelegate :NSObjectProtocol{
     
     func numberOfOptionsInOptionView(optionView:ZXOptionView) -> Int
     
@@ -28,7 +28,7 @@ enum ZXOptionViewType:Int {
 }
 
 // MARK: - ZXOptionView
-class ZXOptionView: UICollectionView{
+public class ZXOptionView: UICollectionView{
 
     weak var optionDelegate: ZXOptionViewDelegate?
     
@@ -43,7 +43,7 @@ class ZXOptionView: UICollectionView{
     
     var type:ZXOptionViewType = .Slider
     
-    init(frame: CGRect) {
+    public init(frame: CGRect) {
         let layout: UICollectionViewFlowLayout = UICollectionViewFlowLayout()
         layout.scrollDirection = UICollectionViewScrollDirection.Horizontal
         layout.minimumLineSpacing = 0
@@ -62,7 +62,7 @@ class ZXOptionView: UICollectionView{
         self.registerClass(ZXOptionViewCell.self, forCellWithReuseIdentifier: "ZXOptionViewCell")
     }
 
-    required init?(coder aDecoder: NSCoder) {
+    required public init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
     }
 }
@@ -114,7 +114,7 @@ extension ZXOptionView {
 // MARK: UICollectionViewDelegate and UICollectionViewDataSource
 extension ZXOptionView : UICollectionViewDelegate,UICollectionViewDataSource {
     
-    func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+    public func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         guard self.optionDelegate != nil else {
             return 0
         }
@@ -122,7 +122,7 @@ extension ZXOptionView : UICollectionViewDelegate,UICollectionViewDataSource {
         return self.optionDelegate!.numberOfOptionsInOptionView(self)
     }
     
-    func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
+    public func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
         var cell: ZXOptionViewCell = collectionView.dequeueReusableCellWithReuseIdentifier("ZXOptionViewCell", forIndexPath: indexPath) as! ZXOptionViewCell
         cell.index = indexPath.row
         cell.textLabel.textColor = selectIndex == indexPath.row ? UIColor.whiteColor() : UIColor.grayColor()
@@ -144,8 +144,7 @@ extension ZXOptionView : UICollectionViewDelegate,UICollectionViewDataSource {
     }
     
     
-    
-    func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
+  public func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
         
         //颜色处理
         if let cell_pre_selected = self.cellForItemAtIndexPath(NSIndexPath(forRow: self.selectIndex, inSection: 0)) {
@@ -178,11 +177,11 @@ extension ZXOptionView : UICollectionViewDelegate,UICollectionViewDataSource {
 
 
 // MARK: - ZXOptionViewCell
-class ZXOptionViewCell: UICollectionViewCell {
+public class ZXOptionViewCell: UICollectionViewCell {
     
-    var index: Int = 0
+    public var index: Int = 0
     
-    var textLabel: UILabel!
+    public var textLabel: UILabel!
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -194,11 +193,11 @@ class ZXOptionViewCell: UICollectionViewCell {
         self.contentView.addSubview(textLabel)
     }
     
-    required init?(coder aDecoder: NSCoder) {
+    required public init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
     }
     
-    override func layoutSubviews() {
+    override public func layoutSubviews() {
         super.layoutSubviews()
         self.textLabel.fillSuperview(left: 2, right: 2, top: 0, bottom: 0)
     }

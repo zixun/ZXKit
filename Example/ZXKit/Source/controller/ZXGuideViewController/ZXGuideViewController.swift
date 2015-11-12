@@ -10,7 +10,7 @@ import UIKit
 import RxSwift
 import RxCocoa
 
-protocol ZXGuideViewControllerDelegate : NSObjectProtocol {
+public protocol ZXGuideViewControllerDelegate : NSObjectProtocol {
     
     func numberOfPagesInGuideView(guideView:ZXGuideViewController) -> NSInteger
 
@@ -23,7 +23,7 @@ protocol ZXGuideViewControllerDelegate : NSObjectProtocol {
     func didClickEnterButtonInGuideView(guideView:ZXGuideViewController)
 }
 
-class ZXGuideViewController: UIViewController {
+public class ZXGuideViewController: UIViewController {
 
     weak var delegate: ZXGuideViewControllerDelegate?
     
@@ -40,7 +40,8 @@ class ZXGuideViewController: UIViewController {
     private var countOfPages:NSInteger = 0
     
     private var disposeBag = DisposeBag()
-    override func viewDidLoad() {
+    
+    override public func viewDidLoad() {
         super.viewDidLoad()
         self.modalPresentationStyle = .OverCurrentContext
         self.modalTransitionStyle = .CrossDissolve
@@ -129,7 +130,7 @@ class ZXGuideViewController: UIViewController {
         
     }
     
-    override func viewWillLayoutSubviews() {
+    override public func viewWillLayoutSubviews() {
         super.viewWillLayoutSubviews()
         
         self.scrollView.fillSuperview()
@@ -140,7 +141,7 @@ class ZXGuideViewController: UIViewController {
 
 extension ZXGuideViewController : UIScrollViewDelegate {
     
-    func scrollViewDidScroll(scrollView: UIScrollView) {
+    public func scrollViewDidScroll(scrollView: UIScrollView) {
         self.enterButton.hidden = true
         
         let pageWidth = scrollView.frame.size.width

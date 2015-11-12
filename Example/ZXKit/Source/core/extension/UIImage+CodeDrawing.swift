@@ -10,7 +10,7 @@ import Foundation
 import UIKit
 
 // MARK: - draw image
-extension UIImage {
+public extension UIImage {
     
     /**
      用CGContextRef代码生成一个UIImage图片对象
@@ -20,7 +20,7 @@ extension UIImage {
      
      - returns: 生成的图片
      */
-    class func image(size: CGSize, drawingBlock:(CGContextRef,CGRect) -> Void) -> UIImage? {
+    public class func image(size: CGSize, drawingBlock:(CGContextRef,CGRect) -> Void) -> UIImage? {
         guard CGSizeEqualToSize(size, CGSizeZero) == false else {
             return nil
         }
@@ -46,7 +46,7 @@ extension UIImage {
      
      - returns: 生成的图片对象
      */
-    class func image(color:UIColor, size:CGSize) ->UIImage? {
+    public class func image(color:UIColor, size:CGSize) ->UIImage? {
         
         guard CGSizeEqualToSize(size, CGSizeZero) == false else {
             return nil
