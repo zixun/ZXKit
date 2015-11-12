@@ -1,0 +1,24 @@
+PODS:
+  - MBProgressHUD (0.9.1)
+  - Neon (0.0.3)
+  - RxBlocking (2.0.0-beta.2):
+    - RxSwift (~> 2.0.0-beta)
+  - RxCocoa (2.0.0-beta.2):
+    - RxSwift (~> 2.0.0-beta)
+  - RxSwift (2.0.0-beta.2)
+
+DEPENDENCIES:
+  - MBProgressHUD (~> 0.9.1)
+  - Neon (~> 0.0.2)
+  - RxBlocking (~> 2.0.0-beta.2)
+  - RxCocoa (~> 2.0.0-beta.2)
+  - RxSwift (~> 2.0.0-beta.2)
+
+SPEC CHECKSUMS:
+  MBProgressHUD: c47f2c166c126cf2ce36498d80f33e754d4e93ad
+  Neon: 589d3d217d326abe09726bf81add106cff685bf2
+  RxBlocking: ffb518856fb7712dcef7e18406ccb8c2854b3104
+  RxCocoa: ee39aa3ab24a8dde3832669f8e1e2c7652925e0c
+  RxSwift: 795720c22352cf1f62669ef3695b5df7e195103b
+
+COCOAPODS: 0.39.0
