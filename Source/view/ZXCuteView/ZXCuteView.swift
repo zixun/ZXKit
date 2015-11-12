@@ -37,6 +37,8 @@ public class ZXCuteView: UIView {
     
     public var backView:UIView?//原地保留显示的View
     
+    public var tapCallBack:(()->Void)?
+    
     private var disposeBag = DisposeBag()
     
     private var initialPoint:CGPoint!
@@ -69,8 +71,6 @@ public class ZXCuteView: UIView {
     private var fillColorForCute:UIColor?
     
     private var cutePath:UIBezierPath!
-    
-    var tapCallBack:(()->Void)?
     
     public convenience init(point:CGPoint,superView:UIView,bubbleWidth:CGFloat) {
         self.init(frame:CGRectMake(point.x, point.y, bubbleWidth,bubbleWidth))
@@ -239,10 +239,16 @@ public class ZXCuteView: UIView {
             self.containerView?.layer.insertSublayer(shapeLayer, below: self.frontView?.layer)
         }
     }
-   
     
-   
+    public func addAniamtionLikeGameCenterBubble() {
+        self.addPositionAnimation()
+        self.addScaleAnimation()
+    }
     
+    public func removeAniamtionLikeGameCenterBubble() {
+        self.removePositionAnimation()
+        self.removeScaleAnimation()
+    }
    
     private func addPositionAnimation() {
         let pathAnimation:CAKeyframeAnimation = CAKeyframeAnimation(keyPath: "position")
@@ -289,15 +295,5 @@ public class ZXCuteView: UIView {
     
     private func removePositionAnimation() {
         self.frontView?.layer.removeAnimationForKey("myCircleAnimation")
-    }
-    
-    func addAniamtionLikeGameCenterBubble() {
-        self.addPositionAnimation()
-        self.addScaleAnimation()
-    }
-    
-    func removeAniamtionLikeGameCenterBubble() {
-        self.removePositionAnimation()
-        self.removeScaleAnimation()
     }
 }
