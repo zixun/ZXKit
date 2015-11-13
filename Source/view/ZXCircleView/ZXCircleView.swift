@@ -26,8 +26,8 @@ public typealias ZXCircleViewCellRef = AutoreleasingUnsafeMutablePointer<ZXCircl
 let TimeInterval = 4.5          //全局的时间间隔
 
 public class ZXCircleView: UIView,UIScrollViewDelegate {
-
-    weak var circleDelegate:ZXCircleViewDelegate!
+    
+    public weak var circleDelegate:ZXCircleViewDelegate?
     
     private var control:ZXPageControl!
     
@@ -42,9 +42,28 @@ public class ZXCircleView: UIView,UIScrollViewDelegate {
     //RxSwift资源回收包
     private let disposeBag = DisposeBag()
     
-    public init(frame: CGRect,delegate:ZXCircleViewDelegate) {
+    public override init(frame: CGRect) {
         super.init(frame: frame)
-        self.circleDelegate = delegate
+        self.initUI()
+    }
+    
+    public convenience init() {
+        self.init(frame:CGRectZero)
+        self.initUI()
+    }
+    
+    override public func layoutSubviews() {
+        super.layoutSubviews()
+        
+        self.scrollView.fillSuperview()
+        self.control.anchorToEdge(.Bottom, padding: 0, width: self.frame.size.width, height: 20)
+    }
+    
+    required public init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
+    private func initUI() {
         self.scrollView = UIScrollView()
         self.scrollView.delegate = self
         self.scrollView.pagingEnabled = true
@@ -60,27 +79,21 @@ public class ZXCircleView: UIView,UIScrollViewDelegate {
         self.addTapGestureRecognizer()
     }
     
-    override public func layoutSubviews() {
-        super.layoutSubviews()
-        
-        self.scrollView.fillSuperview()
-        self.control.anchorToEdge(.Bottom, padding: 0, width: self.frame.size.width, height: 20)
-    }
-
-    required public init?(coder aDecoder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
-
     public func reloadData() {
-        let count = self.circleDelegate.numberOfItemsInCircleView(self)
-        if count == 0 {
+        let count = self.circleDelegate?.numberOfItemsInCircleView(self)
+        guard count != nil else {
             return
         }
+        
+        guard count > 0 else {
+            return
+        }
+        
         
         //构建视图
         var contentSize = CGSizeMake(0, self.bounds.size.height)
         
-        for var i = 0; i < count + 2; i++ {
+        for var i = 0; i < count! + 2; i++ {
             let index = self.dataIndexFromUIndex(i)
             
             let size = self.bounds.size
@@ -88,7 +101,7 @@ public class ZXCircleView: UIView,UIScrollViewDelegate {
             let rect = CGRect(origin:point , size:size )
             var cell = ZXCircleViewCell(frame: rect)
             cell.index = index
-            self.circleDelegate.circleView(self, configureCell: &cell)
+            self.circleDelegate?.circleView(self, configureCell: &cell)
             self.scrollView.addSubview(cell)
             contentSize.width += rect.size.width
             self.cells.append(cell)
@@ -96,8 +109,8 @@ public class ZXCircleView: UIView,UIScrollViewDelegate {
         
         self.scrollView.contentSize = contentSize
         self.scrollView.contentOffset = CGPoint(x: self.bounds.size.width, y: 0)
-        self.control.pageCount = count
-
+        self.control.pageCount = count!
+        
         //设置滚动
         self.timer?.invalidate()
         self.timer = NSTimer.scheduledTimerWithTimeInterval(TimeInterval, target: self, selector: "timerAction", userInfo: nil, repeats: true)
@@ -129,19 +142,21 @@ public class ZXCircleView: UIView,UIScrollViewDelegate {
         
         if floatIndex - CGFloat(Int(floatIndex)) == 0 {
             self.currentUIndex = Int(floatIndex)
-            let count = self.circleDelegate.numberOfItemsInCircleView(self)
-            
+            let count = self.circleDelegate?.numberOfItemsInCircleView(self)
+            guard count != nil && count > 0 else {
+                return
+            }
             
             if Int(floatIndex) == 0 {
-                self.scrollView.contentOffset = self.offsetAtUIndex(count)
+                self.scrollView.contentOffset = self.offsetAtUIndex(count!)
                 return
-            }else if Int(floatIndex) == count + 1 {
+            }else if Int(floatIndex) == count! + 1 {
                 self.scrollView.contentOffset = self.offsetAtUIndex(1)
                 return
             }
-            self.control.currentPage =  self.dataIndexFromUIndex(Int(floatIndex))
+            self.control.currentPage = self.dataIndexFromUIndex(Int(floatIndex))
         }
-            
+        
     }
     
     private func offsetAtUIndex(index:Int) ->CGPoint {
@@ -153,11 +168,16 @@ public class ZXCircleView: UIView,UIScrollViewDelegate {
     
     //dataIndex 是数据源的下标  UIndex是UI布局的下标
     private func dataIndexFromUIndex(index: Int) -> Int {
-         let count = self.circleDelegate.numberOfItemsInCircleView(self)
-         var dataIndex = index - 1
+        let count = self.circleDelegate?.numberOfItemsInCircleView(self)
+        
+        guard count != nil && count > 0 else {
+            return 0
+        }
+        
+        var dataIndex = index - 1
         if index == 0 {
-            dataIndex = count - 1
-        }else if (index == count + 1) {
+            dataIndex = count! - 1
+        }else if (index == count! + 1) {
             dataIndex = 0
         }
         return dataIndex
@@ -172,8 +192,13 @@ public class ZXCircleView: UIView,UIScrollViewDelegate {
                 guard let sself = self else {
                     return
                 }
-                if sself.circleDelegate.respondsToSelector(Selector("circleView:didSelectedCellAtIndex:")) {
-                    sself.circleDelegate.circleView!(sself, didSelectedCellAtIndex: sself.dataIndexFromUIndex(sself.currentUIndex))
+                
+                guard let respond = sself.circleDelegate?.respondsToSelector(Selector("circleView:didSelectedCellAtIndex:")) else {
+                    return
+                }
+                
+                if respond == true {
+                    sself.circleDelegate!.circleView!(sself, didSelectedCellAtIndex: sself.dataIndexFromUIndex(sself.currentUIndex))
                 }
             }
             .addDisposableTo(self.disposeBag)
@@ -223,12 +248,12 @@ public class ZXCircleViewCell: UIView,NSMutableCopying {
         self.titleLabel.anchorAndFillEdge(Edge.Bottom, xPad: 0, yPad: 20, otherSize: 20)
     }
     
-//    func configure(model:CCArticleModel) {
-//        imageView.sd_setImageWithURL(NSURL(string:model.imageURL!)!
-//        )
-//        
-//        titleLabel.text = model.title
-//    }
+    //    func configure(model:CCArticleModel) {
+    //        imageView.sd_setImageWithURL(NSURL(string:model.imageURL!)!
+    //        )
+    //
+    //        titleLabel.text = model.title
+    //    }
     
     public func mutableCopyWithZone(zone: NSZone) -> AnyObject {
         let cell =  ZXCircleViewCell(frame: self.frame)
@@ -237,6 +262,6 @@ public class ZXCircleViewCell: UIView,NSMutableCopying {
         
         return cell
     }
-
+    
 }
 
