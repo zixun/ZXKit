@@ -29,7 +29,7 @@ public enum ZXOptionViewType:Int {
 
 // MARK: - ZXOptionView
 public class ZXOptionView: UICollectionView{
-
+    
     public weak var optionDelegate: ZXOptionViewDelegate?
     
     public var floatIndex: Float = 0.0 {
@@ -48,7 +48,7 @@ public class ZXOptionView: UICollectionView{
         layout.scrollDirection = UICollectionViewScrollDirection.Horizontal
         layout.minimumLineSpacing = 0
         layout.minimumInteritemSpacing = 0
-        layout.itemSize = CGSizeMake(100, frame.size.height)
+        //        layout.itemSize = CGSizeMake(100, frame.size.height)
         super.init(frame: frame, collectionViewLayout: layout)
         
         self.backgroundColor = UIColor.clearColor()
@@ -61,7 +61,11 @@ public class ZXOptionView: UICollectionView{
         
         self.registerClass(ZXOptionViewCell.self, forCellWithReuseIdentifier: "ZXOptionViewCell")
     }
-
+    
+    public convenience init() {
+        self.init(frame:CGRectZero)
+    }
+    
     required public init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
     }
@@ -144,12 +148,12 @@ extension ZXOptionView : UICollectionViewDelegate,UICollectionViewDataSource {
     }
     
     
-  public func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
+    public func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
         
         //颜色处理
         if let cell_pre_selected = self.cellForItemAtIndexPath(NSIndexPath(forRow: self.selectIndex, inSection: 0)) {
             
-             UIView.transitionWithView((cell_pre_selected as! ZXOptionViewCell).textLabel, duration: 0.3, options: .TransitionCrossDissolve, animations: { () -> Void in
+            UIView.transitionWithView((cell_pre_selected as! ZXOptionViewCell).textLabel, duration: 0.3, options: .TransitionCrossDissolve, animations: { () -> Void in
                 (cell_pre_selected as! ZXOptionViewCell).textLabel.textColor = ZXColor(0xB4B4B4)
                 }, completion: nil)
         }
