@@ -15,7 +15,7 @@ Pod::Spec.new do |s|
 
   s.source_files = 'Source/**/*.swift'
   s.resource_bundles = {
-    'resource' => ['Resources/**/*']
+    'resource' => ['Resources/**/*.png','Resources/**/*.css','Resources/**/*.js']
   }
   s.frameworks = 'Foundation','UIKit'
 
