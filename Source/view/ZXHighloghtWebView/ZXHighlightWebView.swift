@@ -105,6 +105,8 @@ public class ZXHighlightWebView: UIWebView {
     }
     
     public func loadHTMLString(string: String) {
+        println(self.baseURL)
+        println(NSBundle.mainBundle().privateFrameworksPath)
         self.loadHTMLString(string, baseURL: self.baseURL)
     }
     
@@ -124,11 +126,12 @@ public class ZXHighlightWebView: UIWebView {
     
     
     private func highlightStyleString() -> String {
-        let arta_css = ZXHighlightStyle.Arta.css()
+        //TODO:路径问题后续优化
+        let arta_css_path = ("Frameworks/ZXKit.framework/resource.bundle/" + ZXHighlightStyle.Arta.css() )
         
-        let result = "<link rel='stylesheet' href='\(arta_css)'>\n" +
-                     "<script src='highlight.pack.js'></script>\n" +
-                     "<script>hljs.initHighlightingOnLoad();</script>"
+        let result = "<link rel='stylesheet' href='\(arta_css_path)'>\n" +
+            "<script src='Frameworks/ZXKit.framework/resource.bundle/highlight.pack.js'></script>\n" +
+        "<script>hljs.initHighlightingOnLoad();</script>"
         
         return result;
     }
