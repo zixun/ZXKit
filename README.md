@@ -1,6 +1,8 @@
 # ZXKit
 从CocoaChinaPlus App中抽离出来的基础组件库，纯Swift实现
 
+##CocoaChina+ QQ群已建：516326791
+
 ZXKit是CocoaChina+ App中抽离出来的基础组件库，抽离出来先开源给大家，当然这个组件库会一直更新，而且今后会添加我另外App的基础组件代码，ZXKit会是我以后所有App的base库。
 
 不过目前还没有时间写Readme，请见谅。
