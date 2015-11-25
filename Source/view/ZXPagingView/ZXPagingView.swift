@@ -53,8 +53,8 @@ public class ZXPagingView: UICollectionView, UICollectionViewDelegateFlowLayout,
     
     
     public init(frame: CGRect) {
-        let layout: UICollectionViewFlowLayout = UICollectionViewFlowLayout()
-        layout.scrollDirection = UICollectionViewScrollDirection.Horizontal
+        let layout = UICollectionViewFlowLayout()
+        layout.scrollDirection = .Horizontal
         layout.minimumLineSpacing = 0
         layout.minimumInteritemSpacing = 0
         layout.itemSize = frame.size
@@ -147,8 +147,12 @@ public class ZXPagingView: UICollectionView, UICollectionViewDelegateFlowLayout,
     // MARK: private method
     private func _callMovingDelegateIfNeeded(scrollView: UIScrollView) {
         
-        let offsetX = scrollView.contentOffset.x
         let itemSize = (self.collectionViewLayout as! UICollectionViewFlowLayout).itemSize
+        guard CGSizeEqualToSize(itemSize, CGSizeZero) == false else {
+            return
+        }
+        let offsetX = scrollView.contentOffset.x
+        
         
         let floatIndex = Float(offsetX / itemSize.width)
         
