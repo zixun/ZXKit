@@ -40,6 +40,8 @@ public class ZXPagingView: UICollectionView, UICollectionViewDelegateFlowLayout,
         }
     }
     
+    private var isDisplay:Bool = false
+    
     override public var frame: CGRect {
         didSet {
             let layout = self.collectionViewLayout as! UICollectionViewFlowLayout
@@ -60,7 +62,7 @@ public class ZXPagingView: UICollectionView, UICollectionViewDelegateFlowLayout,
         layout.itemSize = frame.size
         
         super.init(frame: frame, collectionViewLayout: layout)
-
+        
         self.delegate = self
         self.dataSource = self
         self.pagingEnabled = true
@@ -68,6 +70,9 @@ public class ZXPagingView: UICollectionView, UICollectionViewDelegateFlowLayout,
         self.showsHorizontalScrollIndicator = false
         self.showsVerticalScrollIndicator = false
         
+    }
+    public convenience init() {
+        self.init(frame: CGRectZero)
     }
     
     required public init?(coder aDecoder: NSCoder) {
@@ -79,7 +84,7 @@ public class ZXPagingView: UICollectionView, UICollectionViewDelegateFlowLayout,
         let indexPath = NSIndexPath(forRow: index, inSection: 0)
         self.reloadItemsAtIndexPaths([indexPath])
     }
-
+    
     public func moveToIndex(index:Int) {
         let offset = CGPointMake(self.frame.size.width * CGFloat(index), 0)
         self.setContentOffset(offset, animated: true)
@@ -137,6 +142,11 @@ public class ZXPagingView: UICollectionView, UICollectionViewDelegateFlowLayout,
     
     public func collectionView(collectionView: UICollectionView, willDisplayCell cell: UICollectionViewCell, forItemAtIndexPath indexPath: NSIndexPath) {
         self.pagingDelegate?.pagingView(self, willMoveToPageAtIndex: indexPath.row)
+        
+        if indexPath.row == 0 && self.isDisplay == false {
+            self.isDisplay = true
+            self.pagingDelegate?.pagingView(self, didMoveToPageAtIndex: indexPath.row)
+        }
     }
     
     // MARK: pagingView layout delegate
