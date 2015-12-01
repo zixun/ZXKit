@@ -8,3 +8,6 @@ pod 'RxSwift', '~> 2.0.0-beta.2'
 pod 'RxCocoa', '~> 2.0.0-beta.2'
 pod 'RxBlocking', '~> 2.0.0-beta.2'
 pod 'MBProgressHUD', '~> 0.9.1'
+
+
+pod 'Reveal-iOS-SDK', '~> 1.6.2'
