@@ -33,7 +33,7 @@ pod "ZXKit"
 
 ## Author
 
-chenyilongyellow, chenyilongyellow@didichuxing.com
+zixun, chenyl.exe@gmail.com
 
 ## License
 
