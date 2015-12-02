@@ -60,18 +60,16 @@ public class ZXFileDirectoryView: ZXTreeView {
             let subpath = path.NS.stringByAppendingPathComponent(name)
             let real = realpath.NS.stringByAppendingPathComponent(name)
             
-            var isDirectory:ObjCBool = false
-            if manager.fileExistsAtPath(real, isDirectory: &isDirectory) == false {
+            if manager.fileExistsAtPath(real) == false {
                 continue
             }
             
             let item = ZXTreeItem()
             item.name = name
             item.path = path
-            item.submersionLevel = level
+            item.level = level
             item.parentItem = parent
             item.childrenItems = self.itemsAtPath(subpath, level: level + 1, parent: item)
-            item.isDirectory = Bool(isDirectory)
             
 
             subitems[count++] = item

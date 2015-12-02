@@ -71,28 +71,21 @@ extension ZXTreeView: UITableViewDelegate,UITableViewDataSource {
     
     public func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         let cell = tableView.cellForRowAtIndexPath(indexPath) as! ZXTreeViewCell
-    
-        guard cell.treeItem != nil else {
-            return
-        }
-        self.delegate?.treeView(self, didTapOnTreeItem: cell.treeItem!)
         
-        guard let insertselectingItems = cell.treeItem?.childrenItems else { //self.listItemsAtPath(cell.treeItem?.pathForChildren()) else {
-            return
-        }
+        let treeItem = self.treeItems[indexPath.row]
         
-        var insertTreeItemIndex = self.treeItems.indexOf(cell.treeItem!)!
+        self.delegate?.treeView(self, didTapOnTreeItem: treeItem)
+        let insertselectingItems = treeItem.childrenItems
+        
+        var insertTreeItemIndex = self.treeItems.indexOf(treeItem)!
         var insertIndexPaths = Array<NSIndexPath>()
         
         var removeIndexPaths = Array<NSIndexPath>()
         var treeItemsToRemove = Array<ZXTreeItem>()
         
         for item in insertselectingItems {
-            item.path = cell.treeItem?.pathForChildren()
-            item.parentItem = cell.treeItem
-            
-            cell.treeItem?.childrenItems.removeAll()
-            cell.treeItem?.childrenItems.appendContentsOf(insertselectingItems)
+            item.path = treeItem.pathForChildren()
+            item.parentItem = treeItem
             
             insertTreeItemIndex++
             
@@ -127,9 +120,6 @@ extension ZXTreeView: UITableViewDelegate,UITableViewDataSource {
             cell.open = false
             
         }
-        
-        self.delegate?.treeView(self, didTapOnTreeItem: cell.treeItem!)
-    
     }
     
     
@@ -152,20 +142,15 @@ extension ZXTreeView: UITableViewDelegate,UITableViewDataSource {
     func indexPathsForTreeItems(items:Array<ZXTreeItem>) ->Array<NSIndexPath> {
         var result = [NSIndexPath]()
         
-        for var i = 0; i < self.tableView.numberOfRowsInSection(0); ++i {
-            let indexPath = NSIndexPath(forRow: i, inSection: 0)
-            let cell = self.tableView(self.tableView, cellForRowAtIndexPath: indexPath) as! ZXTreeViewCell
-            
-            for item in items {
-                if cell.treeItem!.isEqualToSelectingItem(item) {
-                    result.append(indexPath)
-                }
+        for item in items {
+            let index = self.treeItems.indexOf(item)
+            if index != nil {//因为有可能子节点的子节点没展开 所以没有添加到treeItems上来
+                let indexPath = NSIndexPath(forRow: index!, inSection: 0)
+                result.append(indexPath)
             }
         }
-        
         return result
     }
-    
 }
 
 extension ZXTreeView:ZXTreeViewCellDelegate {
@@ -184,8 +169,13 @@ public class ZXTreeItem: NSObject {
     var path: String?
     var parentItem:ZXTreeItem?
     var childrenItems = Array<ZXTreeItem>()
-    var submersionLevel:Int = 0
-    var isDirectory:Bool = false
+    var level:Int = 0
+    
+    var isDirectory:Bool {
+        get {
+            return self.childrenItems.count > 0
+        }
+    }
     
     override init() {
         super.init()

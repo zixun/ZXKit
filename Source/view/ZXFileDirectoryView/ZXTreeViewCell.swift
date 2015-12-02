@@ -49,7 +49,7 @@ class ZXTreeViewCell: UITableViewCell {
     
     
     
-    private(set) var treeItem:ZXTreeItem?
+    private var treeItem:ZXTreeItem?
     
     private let disposeBag = DisposeBag()
     
@@ -110,7 +110,7 @@ class ZXTreeViewCell: UITableViewCell {
         self.titleTextField.text = item.name
         self.titleTextField.sizeToFit()
         
-        self.setLevel(item.submersionLevel)
+        self.setLevel(item.level)
     }
     
     
