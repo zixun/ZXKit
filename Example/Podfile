@@ -1,13 +1,12 @@
 source 'https://github.com/CocoaPods/Specs.git'
-platform :ios, '8.0'
 use_frameworks!
-inhibit_all_warnings!
 
-pod 'Neon', '~> 0.0.3'
-pod 'RxSwift', '~> 2.0.0-beta.2'
-pod 'RxCocoa', '~> 2.0.0-beta.2'
-pod 'RxBlocking', '~> 2.0.0-beta.2'
-pod 'MBProgressHUD', '~> 0.9.1'
+target 'ZXKit_Example', :exclusive => true do
+  pod "ZXKit", :path => "../"
+end
 
+target 'ZXKit_Tests', :exclusive => true do
+  pod "ZXKit", :path => "../"
 
-pod 'Reveal-iOS-SDK', '~> 1.6.2'
+  
+end

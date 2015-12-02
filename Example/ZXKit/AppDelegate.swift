@@ -2,8 +2,8 @@
 //  AppDelegate.swift
 //  ZXKit
 //
-//  Created by user on 15/11/12.
-//  Copyright © 2015年 陈奕龙. All rights reserved.
+//  Created by chenyilongyellow on 12/02/2015.
+//  Copyright (c) 2015 chenyilongyellow. All rights reserved.
 //
 
 import UIKit

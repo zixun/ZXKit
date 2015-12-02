@@ -1,0 +1,6 @@
+framework module Pods_ZXKit_Tests {
+  umbrella header "Pods-ZXKit_Tests-umbrella.h"
+
+  export *
+  module * { export * }
+}
