@@ -14,7 +14,7 @@ class ViewController: UIViewController {
 
     private lazy var test: ZXFileDirectoryView = {
         let new = ZXFileDirectoryView()
-        
+        new.basePath = "/Users/user/Documents/code/play/ZXKit"
         return new
     }()
     

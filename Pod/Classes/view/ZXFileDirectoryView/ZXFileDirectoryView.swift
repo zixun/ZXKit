@@ -11,7 +11,22 @@ import UIKit
 
 public class ZXFileDirectoryView: ZXTreeView {
     
-    private var basepath = "/Users/user/Documents/code/play/ZXKit"
+    public var basePath:String? {
+        didSet {
+            
+            guard self.basePath != nil else {
+                return
+            }
+            
+            dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0)) { () -> Void in
+                self.treeItems = self.itemsAtPath("/", level: 0, parent: nil)
+                
+                dispatch_async(dispatch_get_main_queue(), { () -> Void in
+                    self.reloadData()
+                })
+            }
+        }
+    }
     
     convenience init() {
         self.init(frame:CGRectZero)
@@ -22,13 +37,7 @@ public class ZXFileDirectoryView: ZXTreeView {
         
         self.delegate = self
         
-        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0)) { () -> Void in
-            self.treeItems = self.itemsAtPath("/", level: 0, parent: nil)
-            
-            dispatch_async(dispatch_get_main_queue(), { () -> Void in
-                self.reloadData()
-            })
-        }
+        
     }
     
 
@@ -39,7 +48,7 @@ public class ZXFileDirectoryView: ZXTreeView {
     
     func itemsAtPath(path:String, level:Int, parent:ZXTreeItem?) ->Array<ZXTreeItem> {
         let manager = NSFileManager.defaultManager()
-        let realpath = self.basepath.NS.stringByAppendingPathComponent(path)
+        let realpath = self.basePath!.NS.stringByAppendingPathComponent(path)
         
         
         var contents = [String]()
