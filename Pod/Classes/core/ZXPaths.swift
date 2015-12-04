@@ -22,8 +22,8 @@ import Foundation
 * @returns The bundle path concatenated with the given relative path.
 */
 public func ZXPathForBundleResource(bundle: NSBundle?, relativePath: String) -> String {
-    let resourcePath = (bundle == nil ? NSBundle.mainBundle() : bundle)!.resourcePath! as NSString
-    return resourcePath.stringByAppendingPathComponent(relativePath)
+    let resourcePath = (bundle == nil ? NSBundle.mainBundle() : bundle)!.resourcePath!
+    return resourcePath.NS.stringByAppendingPathComponent(relativePath)
 }
 
 /**
@@ -32,7 +32,7 @@ public func ZXPathForBundleResource(bundle: NSBundle?, relativePath: String) -> 
 * @returns The documents path concatenated with the given relative path.
 */
 public func ZXPathForDocumentsResource(relativePath: String) -> String {
-    return (documentsPath as NSString).stringByAppendingPathComponent(relativePath)
+    return documentsPath.stringByAppendingPathComponent(relativePath)
 }
 
 /**
@@ -41,7 +41,7 @@ public func ZXPathForDocumentsResource(relativePath: String) -> String {
 * @returns The Library path concatenated with the given relative path.
 */
 public func ZXPathForLibraryResource(relativePath: String) -> String {
-     return (libraryPath as NSString).stringByAppendingPathComponent(relativePath)
+     return libraryPath.stringByAppendingPathComponent(relativePath)
 }
 
 /**
@@ -50,7 +50,7 @@ public func ZXPathForLibraryResource(relativePath: String) -> String {
 * @returns The caches path concatenated with the given relative path.
 */
 public func ZXPathForCachesResource(relativePath: String) -> String {
-    return (cachesPath as NSString).stringByAppendingPathComponent(relativePath)
+    return cachesPath.stringByAppendingPathComponent(relativePath)
 }
 
 
@@ -60,25 +60,25 @@ public func ZXPathForCachesResource(relativePath: String) -> String {
 * @returns The caches path concatenated with the given relative path.
 */
 public func ZXPathForApplicationSupportResource(relativePath: String) -> String {
-    return (applicationSupportPath as NSString).stringByAppendingPathComponent(relativePath)
+    return applicationSupportPath.stringByAppendingPathComponent(relativePath)
 }
 
  /// 将document目录作为常量保存起来，提高访问性能
 private let documentsPath = NSSearchPathForDirectoriesInDomains(.DocumentDirectory,
     .UserDomainMask,
-    true).first!
+    true).first!.NS
 
  /// 将library目录作为常量保存起来，提高访问性能
 private let libraryPath = NSSearchPathForDirectoriesInDomains(.LibraryDirectory,
     .UserDomainMask,
-    true).first!
+    true).first!.NS
 
  /// 将caches目录作为常量保存起来，提高访问性能
 private let cachesPath = NSSearchPathForDirectoriesInDomains(.CachesDirectory,
     .UserDomainMask,
-    true).first!
+    true).first!.NS
 
  /// 将applicationSupport目录作为常量保存起来，提高访问性能
 private let applicationSupportPath = NSSearchPathForDirectoriesInDomains(.ApplicationSupportDirectory,
     .UserDomainMask,
-    true).first!
+    true).first!.NS
