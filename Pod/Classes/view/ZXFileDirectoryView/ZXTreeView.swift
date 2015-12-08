@@ -11,15 +11,11 @@ import UIKit
 import Neon
 import RxSwift
 
-public protocol ZXTreeViewDelegate: NSObjectProtocol {
-    func treeView(treeView:ZXTreeView,didTapOnTreeItem:ZXTreeItem)
-}
-
 public class ZXTreeView: UIView {
     
-    var treeItems = [ZXTreeItem]()
+    public let rx_tapTreeItem = PublishSubject<ZXTreeItem>()
     
-    weak var delegate:ZXTreeViewDelegate?
+    var treeItems = [ZXTreeItem]()
     
     private lazy var tableView: UITableView = {
         let new = UITableView()
@@ -73,8 +69,7 @@ extension ZXTreeView: UITableViewDelegate,UITableViewDataSource {
         let cell = tableView.cellForRowAtIndexPath(indexPath) as! ZXTreeViewCell
         
         let treeItem = self.treeItems[indexPath.row]
-        
-        self.delegate?.treeView(self, didTapOnTreeItem: treeItem)
+        self.rx_tapTreeItem.onNext(treeItem)
         let insertselectingItems = treeItem.childrenItems
         
         var insertTreeItemIndex = self.treeItems.indexOf(treeItem)!

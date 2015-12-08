@@ -34,10 +34,6 @@ public class ZXFileDirectoryView: ZXTreeView {
     
     override init(frame: CGRect) {
         super.init(frame: frame)
-        
-        self.delegate = self
-        
-        
     }
     
 
@@ -96,13 +92,6 @@ public class ZXFileDirectoryView: ZXTreeView {
         return result
     }
     
-}
-
-
-extension ZXFileDirectoryView:ZXTreeViewDelegate {
-    public func treeView(treeView: ZXTreeView, didTapOnTreeItem: ZXTreeItem) {
-        
-    }
 }
 
 extension ZXFileDirectoryView {
