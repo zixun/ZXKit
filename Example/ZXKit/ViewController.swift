@@ -14,6 +14,9 @@ class ViewController: UIViewController {
 
     private lazy var test: ZXFileDirectoryView = {
         let new = ZXFileDirectoryView()
+        new.rx_tapTreeItem.subscribeNext({ (item:ZXTreeItem) -> Void in
+            print(item)
+        })
         new.basePath = "/Users/user/Documents/code/play/ZXKit"
         return new
     }()

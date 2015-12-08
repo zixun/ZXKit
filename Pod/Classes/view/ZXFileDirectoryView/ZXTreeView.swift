@@ -13,7 +13,10 @@ import RxSwift
 
 public class ZXTreeView: UIView {
     
-    public let rx_tapTreeItem = PublishSubject<ZXTreeItem>()
+    public lazy var rx_tapTreeItem: PublishSubject<ZXTreeItem> = {
+        let new = PublishSubject<ZXTreeItem>()
+        return new
+    }()
     
     var treeItems = [ZXTreeItem]()
     
@@ -150,7 +153,7 @@ extension ZXTreeView: UITableViewDelegate,UITableViewDataSource {
 
 extension ZXTreeView:ZXTreeViewCellDelegate {
     func treeTableViewCell(cell: ZXTreeViewCell, didTapIconWithTreeItem: ZXTreeItem) {
-        self.delegate?.treeView(self, didTapOnTreeItem: didTapIconWithTreeItem)
+        self.rx_tapTreeItem.onNext(didTapIconWithTreeItem)
     }
 }
 
