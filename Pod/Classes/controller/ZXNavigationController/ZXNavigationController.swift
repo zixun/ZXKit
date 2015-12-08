@@ -10,6 +10,7 @@ import UIKit
 
 public class ZXNavigationController: UINavigationController {
 
+    public var enable = true
     
     override public func viewDidLoad() {
         super.viewDidLoad()
@@ -53,8 +54,13 @@ extension ZXNavigationController: UIGestureRecognizerDelegate {
     
     public func gestureRecognizerShouldBegin(gestureRecognizer: UIGestureRecognizer) -> Bool {
         let translation: CGPoint = (gestureRecognizer as! UIPanGestureRecognizer).translationInView(self.view.superview)
+        
+        guard self.enable == true else {
+            return false
+        }
+        
         if (translation.x < 0) {
-            return false;//往右滑返回，往左滑不做操作
+            return false //往右滑返回，往左滑不做操作
         }
         
         if (self.viewControllers.count <= 1) {
