@@ -38,9 +38,6 @@
     "RxCocoa": [
       "~> 2.0.0-beta.2"
     ],
-    "RxBlocking": [
-      "~> 2.0.0-beta.2"
-    ],
     "MBProgressHUD": [
       "~> 0.9.1"
     ]

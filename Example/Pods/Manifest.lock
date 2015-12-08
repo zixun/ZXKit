@@ -1,15 +1,12 @@
 PODS:
   - MBProgressHUD (0.9.1)
   - Neon (0.0.3)
-  - RxBlocking (2.0.0-beta.3):
-    - RxSwift (~> 2.0.0-beta)
   - RxCocoa (2.0.0-beta.3):
     - RxSwift (~> 2.0.0-beta)
   - RxSwift (2.0.0-beta.3)
   - ZXKit (0.1.0):
     - MBProgressHUD (~> 0.9.1)
     - Neon (~> 0.0.3)
-    - RxBlocking (~> 2.0.0-beta.2)
     - RxCocoa (~> 2.0.0-beta.2)
     - RxSwift (~> 2.0.0-beta.2)
 
@@ -23,9 +20,8 @@ EXTERNAL SOURCES:
 SPEC CHECKSUMS:
   MBProgressHUD: c47f2c166c126cf2ce36498d80f33e754d4e93ad
   Neon: 589d3d217d326abe09726bf81add106cff685bf2
-  RxBlocking: 331f8bdedf77198f8ff1a37f09c492f1f4f631e5
   RxCocoa: 1472006304b296d03c847f78b21384523cc4902e
   RxSwift: 19fbe885b404d1d36d42ac8535134739a9b42952
-  ZXKit: c003369e07a5fcfb5ccd1a8790f10fb90c135e1c
+  ZXKit: 0b8e90155463b7a2946f78310c160fea5542848e
 
 COCOAPODS: 0.39.0

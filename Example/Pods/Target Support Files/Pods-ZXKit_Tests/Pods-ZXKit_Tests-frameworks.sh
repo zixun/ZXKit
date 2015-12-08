@@ -86,7 +86,6 @@ strip_invalid_archs() {
 if [[ "$CONFIGURATION" == "Debug" ]]; then
   install_framework "Pods-ZXKit_Tests/MBProgressHUD.framework"
   install_framework "Pods-ZXKit_Tests/Neon.framework"
-  install_framework "Pods-ZXKit_Tests/RxBlocking.framework"
   install_framework "Pods-ZXKit_Tests/RxCocoa.framework"
   install_framework "Pods-ZXKit_Tests/RxSwift.framework"
   install_framework "Pods-ZXKit_Tests/ZXKit.framework"
@@ -94,7 +93,6 @@ fi
 if [[ "$CONFIGURATION" == "Release" ]]; then
   install_framework "Pods-ZXKit_Tests/MBProgressHUD.framework"
   install_framework "Pods-ZXKit_Tests/Neon.framework"
-  install_framework "Pods-ZXKit_Tests/RxBlocking.framework"
   install_framework "Pods-ZXKit_Tests/RxCocoa.framework"
   install_framework "Pods-ZXKit_Tests/RxSwift.framework"
   install_framework "Pods-ZXKit_Tests/ZXKit.framework"
