@@ -163,13 +163,13 @@ extension ZXTreeView:ZXTreeViewCellDelegate {
 //Model
 
 public class ZXTreeItem: NSObject {
-    var name: String?
-    var path: String?
-    var parentItem:ZXTreeItem?
-    var childrenItems = Array<ZXTreeItem>()
-    var level:Int = 0
+    public var name: String?
+    public var path: String?
+    public var parentItem:ZXTreeItem?
+    public var childrenItems = Array<ZXTreeItem>()
+    public var level:Int = 0
     
-    var isDirectory:Bool {
+    public var isDirectory:Bool {
         get {
             return self.childrenItems.count > 0
         }
@@ -180,11 +180,11 @@ public class ZXTreeItem: NSObject {
     }
     
     //是否有孩子节点
-    func hasChildren() -> Bool {
+    public func hasChildren() -> Bool {
         return self.childrenItems.count > 0
     }
     
-    func pathForChildren() ->String? {
+    public func pathForChildren() ->String? {
         //TODO
         return self.path?.NS.stringByAppendingPathComponent(name!)
     }
