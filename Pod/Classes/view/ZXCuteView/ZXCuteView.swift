@@ -135,7 +135,7 @@ public class ZXCuteView: UIView {
         let pan = UIPanGestureRecognizer()
         self.frontView!.addGestureRecognizer(pan)
         pan.rx_event
-            .subscribeNext { (ges) -> Void in
+            .subscribeNext {[unowned self] (ges) -> Void in
                 self.dragMe(ges as! UIPanGestureRecognizer)
             }
             .addDisposableTo(self.disposeBag)
@@ -143,7 +143,7 @@ public class ZXCuteView: UIView {
         let tap = UITapGestureRecognizer()
         self.frontView!.addGestureRecognizer(tap)
         tap.rx_event
-            .subscribeNext { (ges) -> Void in
+            .subscribeNext {[unowned self] (ges) -> Void in
                 self.tapMe(ges as! UITapGestureRecognizer)
             }
             .addDisposableTo(self.disposeBag)
