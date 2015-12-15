@@ -1,10 +1,6 @@
 # ZXKit
 
-![Swift 2.1](https://img.shields.io/badge/Swift-2.1-orange.svg?style=flat)](https://developer.apple.com/swift/)
-[![Platforms iOS](https://img.shields.io/badge/Platforms-iOS-lightgray.svg?style=flat)](https://developer.apple.com/swift/)
-[![License](http://img.shields.io/:license-mit-blue.svg)](http://doge.mit-license.org)
-
-
+[![Swift 2.1](https://img.shields.io/badge/Swift-2.1-orange.svg?style=flat)](https://developer.apple.com/swift/)
 [![CI Status](http://img.shields.io/travis/chenyilongyellow/ZXKit.svg?style=flat)](https://travis-ci.org/chenyilongyellow/ZXKit)
 [![Version](https://img.shields.io/cocoapods/v/ZXKit.svg?style=flat)](http://cocoapods.org/pods/ZXKit)
 [![License](https://img.shields.io/cocoapods/l/ZXKit.svg?style=flat)](http://cocoapods.org/pods/ZXKit)
