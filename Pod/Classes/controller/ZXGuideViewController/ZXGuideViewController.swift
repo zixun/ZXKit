@@ -116,7 +116,7 @@ public class ZXGuideViewController: UIViewController {
             }.addDisposableTo(self.disposeBag)
         
         self.pageControl
-            .rx_controlEvents(.ValueChanged)
+            .rx_controlEvent(.ValueChanged)
             .subscribeNext {[weak self] () -> Void in
                 
                 guard let sself = self else {

@@ -1,14 +1,14 @@
 PODS:
-  - MBProgressHUD (0.9.1)
+  - MBProgressHUD (0.9.2)
   - Neon (0.0.3)
-  - RxCocoa (2.0.0-beta.3):
-    - RxSwift (~> 2.0.0-beta)
-  - RxSwift (2.0.0-beta.3)
+  - RxCocoa (2.0.0):
+    - RxSwift (~> 2.0)
+  - RxSwift (2.0.0)
   - ZXKit (0.1.0):
     - MBProgressHUD (~> 0.9.1)
     - Neon (~> 0.0.3)
-    - RxCocoa (~> 2.0.0-beta.2)
-    - RxSwift (~> 2.0.0-beta.2)
+    - RxCocoa (~> 2.0.0)
+    - RxSwift (~> 2.0.0)
 
 DEPENDENCIES:
   - ZXKit (from `../`)
@@ -18,10 +18,10 @@ EXTERNAL SOURCES:
     :path: ../
 
 SPEC CHECKSUMS:
-  MBProgressHUD: c47f2c166c126cf2ce36498d80f33e754d4e93ad
+  MBProgressHUD: 1569cf7ace17a8bac47aabfbb8580a49690386d1
   Neon: 589d3d217d326abe09726bf81add106cff685bf2
-  RxCocoa: 1472006304b296d03c847f78b21384523cc4902e
-  RxSwift: 19fbe885b404d1d36d42ac8535134739a9b42952
-  ZXKit: 0b8e90155463b7a2946f78310c160fea5542848e
+  RxCocoa: b0ebd70b4f7450bdb3c8987b122f8fd568dc1e2f
+  RxSwift: d83246efa6f16c50c143bec134649d045498f601
+  ZXKit: c2ab6e4961361d9736689e9b9beea888c3e4761c
 
 COCOAPODS: 0.39.0
