@@ -37,8 +37,8 @@ Pod::Spec.new do |s|
   s.frameworks = 'Foundation','UIKit'
 
   s.dependency 'Neon', '~> 0.0.3'
-  s.dependency 'RxSwift', '~> 2.0.0'
-  s.dependency 'RxCocoa', '~> 2.0.0'
+  s.dependency 'RxSwift', '~> 2.2.0'
+  s.dependency 'RxCocoa', '~> 2.2.0'
   s.dependency 'MBProgressHUD', '~> 0.9.1'
 
 end

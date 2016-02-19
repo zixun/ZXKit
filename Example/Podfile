@@ -1,11 +1,11 @@
 source 'https://github.com/CocoaPods/Specs.git'
 use_frameworks!
 
-target 'ZXKit_Example', :exclusive => true do
+target 'ZXKit_Example' do
   pod "ZXKit", :path => "../"
 end
 
-target 'ZXKit_Tests', :exclusive => true do
+target 'ZXKit_Tests' do
   pod "ZXKit", :path => "../"
 
   

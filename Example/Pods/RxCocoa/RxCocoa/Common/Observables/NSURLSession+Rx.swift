@@ -59,24 +59,26 @@ func escapeTerminalString(value: String) -> String {
 
 func convertURLRequestToCurlCommand(request: NSURLRequest) -> String {
     let method = request.HTTPMethod ?? "GET"
-    var returnValue = "curl -i -v -X \(method) "
+    var returnValue = "curl -X \(method) "
 
     if  request.HTTPMethod == "POST" && request.HTTPBody != nil {
         let maybeBody = NSString(data: request.HTTPBody!, encoding: NSUTF8StringEncoding) as? String
         if let body = maybeBody {
-            returnValue += "-d \"\(body)\""
+            returnValue += "-d \"\(escapeTerminalString(body))\" "
         }
     }
 
     for (key, value) in request.allHTTPHeaderFields ?? [:] {
         let escapedKey = escapeTerminalString((key as String) ?? "")
         let escapedValue = escapeTerminalString((value as String) ?? "")
-        returnValue += "-H \"\(escapedKey): \(escapedValue)\" "
+        returnValue += "\n    -H \"\(escapedKey): \(escapedValue)\" "
     }
 
     let URLString = request.URL?.absoluteString ?? "<unknown url>"
 
-    returnValue += "\"\(escapeTerminalString(URLString))\""
+    returnValue += "\n\"\(escapeTerminalString(URLString))\""
+
+    returnValue += " -i -v"
 
     return returnValue
 }
