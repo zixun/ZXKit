@@ -2,8 +2,8 @@
 //  ViewController.swift
 //  ZXKit
 //
-//  Created by chenyilongyellow on 12/02/2015.
-//  Copyright (c) 2015 chenyilongyellow. All rights reserved.
+//  Created by chenyilong on 12/02/2015.
+//  Copyright (c) 2015 chenyilong. All rights reserved.
 //
 
 import UIKit
